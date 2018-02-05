@@ -10,7 +10,7 @@ You check out my other repos for more Splunk configurations.
 1. [Useful Documentation](#1---useful-documentation)
 2. [Initial Setup Commands](#2---initial-setup-commands)
 
-### 1 - Useful Documentation
+## 1 - Useful Documentation
 
 #### Splunk Documentation
 * [Splunk Docs](http://docs.splunk.com/Documentation)
@@ -21,7 +21,7 @@ You check out my other repos for more Splunk configurations.
   * [Indexes.conf](http://docs.splunk.com/Documentation/Splunk/7.0.2/admin/Indexesconf)
   * [Deploymentclient.conf](http://docs.splunk.com/Documentation/Splunk/7.0.2/admin/Deploymentclientconf)
   
-#### SPLUNK APPS
+### SPLUNK APPS
 * [Splunkbase](https://splunkbase.splunk.com/)
   
 #### SPLUNK EDUCATION
