@@ -1,11 +1,20 @@
 #!/bin/bash -v
-echo -n "Enter new Splunk admin password and press [ENTER]: \n"
+echo -n "Enter new Splunk admin password and press [ENTER]: "
 read -s password
-echo -n "Enter Deployment Server and press [ENTER] (e.g. 192.168.1.33:8089): \n"
+echo
+echo -n "Enter Deployment Server and press [ENTER] (e.g. 192.168.1.33:8089): "
 read deploymentclient
+echo
 export SPLUNK_USER=splunk
 export SPLUNK_BIN=/opt/splunk/bin/splunk
 export SPLUNK_HOME=/opt/splunk
+#INCREASE ULIMITS
+mkdir -p /etc/systemd/system/splunk.service.d/
+cat >/etc/systemd/system/splunk.service.d/filelimit.conf <<EOF
+[Service]
+LimitNOFILE=61440
+LimitNPROC=61440
+EOF
 #DISABLE THP
 cat >/etc/systemd/system/disable-transparent-huge-pages.service<<EOF
 [Unit]
@@ -36,13 +45,6 @@ chown -R $SPLUNK_USER:$SPLUNK_USER /opt/splunk
 runuser -l  splunk -c "$SPLUNK_BIN start --accept-license"
 runuser -l  splunk -c "$SPLUNK_BIN edit user admin -password $password -role admin -auth admin:changeme"
 $SPLUNK_BIN enable boot-start -user splunk
-#INCREASE ULIMITS
-mkdir -p /etc/systemd/system/splunk.service.d/
-cat >/etc/systemd/system/splunk.service.d/filelimit.conf <<EOF
-[Service]
-LimitNOFILE=61440
-LimitNPROC=61440
-EOF
 systemctl daemon-reload
-sleep 15
+systemctl restart splunk.service
 systemctl restart splunk.service
