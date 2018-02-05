@@ -43,6 +43,6 @@ cat >/etc/systemd/system/splunk.service.d/filelimit.conf <<EOF
 LimitNOFILE=61440
 LimitNPROC=61440
 EOF
-sleep 10
 systemctl daemon-reload
+sleep 15
 systemctl restart splunk.service
