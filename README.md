@@ -10,6 +10,11 @@ You check out my other repos for more Splunk configurations.
 1. [Useful Documentation](#1---useful-documentation)
 2. [Initial Setup Commands](#2---initial-setup-commands)
 3. [Scripts](#3---scripts)
+	1. [Splunk Universal Forwarder Guided Install](#splunk-universal-forwarder-guided-install)
+4. [Splunk Apps](#4---splunk-apps)
+	1. [VirusTotal Command App](#1-virustotal-command-app)
+	2. [Sysinternal Autoruns Input App](#2-sysinternal-autoruns-input-app)
+
 ## 1 - Useful Documentation
 
 #### Splunk Documentation
@@ -71,9 +76,17 @@ sudo /opt/splunkforwarder/bin/splunk enable boot-start -user splunk
 
 ## 3 - Scripts
 
-**[Splunk Universal Forwarder Guided Install](./splunk_guided_install.ps1)**
+##### [Splunk Universal Forwarder Guided Install](./splunk_guided_install.ps1)
 
 This is a guided install written in Powershell. You can use it to search Active Directory for machine names, specify and input file
 with a list of machine names, or you can run it as a local install.
 
 You will also have the ability to specify a deployment server as well as an install location. 
+
+## 4 - Splunk Apps
+
+This is a list of apps that I am working on right now. I will be putting together more details on each project shortly.
+
+##### 1. [VirusTotal Command App](https://github.com/badgerttl/vtlu_command)
+
+##### 2. [Sysinternal Autoruns Input App](https://github.com/badgerttl/autoruns_input)
