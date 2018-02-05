@@ -1,4 +1,4 @@
-# splunk_notes
+# Splunk Notes
 
 <h3>INTRODUCTION</h3>
 <p>This repo contains notes and useful commands that I have found while depoloying and administering Splunk. I will also add any script that may help in automating the splunk installs.</p>
