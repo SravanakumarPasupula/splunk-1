@@ -1,6 +1,8 @@
 #!/bin/bash -v
-echo -n "Enter new Splunk admin password and press [ENTER]: "
+echo -n "Enter new Splunk admin password and press [ENTER]: \n"
 read -s password
+echo -n "Enter Deployment Server and press [ENTER] (e.g. 192.168.1.33:8089): \n"
+read deploymentclient
 export SPLUNK_USER=splunk
 export SPLUNK_BIN=/opt/splunk/bin/splunk
 export SPLUNK_HOME=/opt/splunk
@@ -22,6 +24,13 @@ systemctl start disable-transparent-huge-pages.service
 #DOWNLOAD AND INSTALL
 wget -O /tmp/splunk-7.0.2-03bbabbd5c0f-Linux-x86_64.tgz 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.0.2&product=splunk&filename=splunk-7.0.2-03bbabbd5c0f-Linux-x86_64.tgz&wget=true'
 tar xvzf /tmp/splunk-7.0.2-03bbabbd5c0f-Linux-x86_64.tgz -C /opt
+cat >/opt/splunk/etc/system/local/deploymentclient.conf<<EOF
+[deployment-client]
+phoneHomeIntervalInSecs = 60
+
+[target-broker:deploymentServer]
+targetUri = $deploymentclient
+EOF
 useradd splunk
 chown -R $SPLUNK_USER:$SPLUNK_USER /opt/splunk
 runuser -l  splunk -c "$SPLUNK_BIN start --accept-license"
@@ -34,5 +43,6 @@ cat >/etc/systemd/system/splunk.service.d/filelimit.conf <<EOF
 LimitNOFILE=61440
 LimitNPROC=61440
 EOF
+sleep 10
 systemctl daemon-reload
 systemctl restart splunk.service
