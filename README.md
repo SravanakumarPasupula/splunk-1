@@ -78,7 +78,7 @@ sudo /opt/splunkforwarder/bin/splunk enable boot-start -user splunk
 
 ##### [Splunk Universal Forwarder Guided Install](./splunk_guided_install.ps1)
 
-This is a guided install written in Powershell. You can use it to search Active Directory for machine names, specify and input file
+This is a guided install written in Powershell. You can use it to search Active Directory for machine names, specify an input file
 with a list of machine names, or you can run it as a local install.
 
 You will also have the ability to specify a deployment server as well as an install location. 
