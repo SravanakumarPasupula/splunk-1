@@ -9,10 +9,11 @@ You check out my other repos for more Splunk configurations.
 
 1. [Useful Documentation](#1---useful-documentation)
 2. [Initial Setup Commands](#2---initial-setup-commands)
-3. [Scripts](#3---scripts)
+3. [Useful Commands](#3---useful-commands)
+4. [Scripts](#4---scripts)
 	1. [Splunk Enterprise Initial Setup](#1-splunk-enterprise-initial-setup)
 	2. [Splunk Universal Forwarder Guided Install](#2-splunk-universal-forwarder-guided-install)
-4. [Splunk Apps](#4---splunk-apps)
+5. [Splunk Apps](#5---splunk-apps)
 	1. [VirusTotal Command App](#1-virustotal-command-app)
 	2. [Sysinternal Autoruns Input App](#2-sysinternal-autoruns-input-app)
 
@@ -74,8 +75,57 @@ sudo /opt/splunk/bin/splunk enable boot-start -user splunk
 ```bash
 sudo /opt/splunkforwarder/bin/splunk enable boot-start -user splunk
 ```
+## 3 - Useful Commands
 
-## 3 - Scripts
+**ANY SPLUNK CONFIGURATION**
+
+```
+splunk btool <props, transforms, inputs, limits> list <name of monitor, sourcetype, or leave blank> --debug |grep -v system/default
+splunk btool <props, transforms, inputs, limits> list --debug |grep -v system/default |grep <information about what you are looking for>
+splunk btool props list <sourcetype> --debug |grep -v system/default
+splunk btool transforms list <transform stanza> --debug |grep -v system/default
+```
+**CLIENTS**
+
+Who is my deployment server
+```
+splunk list deploy-poll
+```
+**DEPLOYMENT SERVER**
+
+Makes changes available to deployment clients
+```
+splunk reload deploy-server
+splunk reload deploy-server -class <serverclass>
+```
+**INDEXERS**
+
+Push apps from Master-Apps to Splave-Apps on Indexers
+```
+splunk apply cluster-bundle
+```
+Show status of cluster app deployments
+```
+splunk show cluster-bundle-status
+```
+Show Index cluster status
+```
+splunk show cluster-status
+```
+Takes splunk offline (default 1 min)
+```
+splunk offline
+```
+Change offline time (reset to 1 min when done)
+```
+splunk edit cluster-config -restart_timeout <SECONDS>
+```
+Oneshot log ingestion
+```
+splunk add oneshot -index <index name> -source <log file path> -sourcetype <log sourcetype>
+```
+
+## 4 - Scripts
 
 ##### 1. [Splunk Enterprise Initial Setup](./install_splunkenterprise.sh)
 ** Note: This works on CentOS 7. May require a few tweeks in RHEL 7 regarding the THP
@@ -89,7 +139,7 @@ with a list of machine names, or you can run it as a local install.
 
 You will also have the ability to specify a deployment server as well as an install location. 
 
-## 4 - Splunk Apps
+## 5 - Splunk Apps
 
 This is a list of apps that I am working on right now. I will be putting together more details on each project shortly.
 
