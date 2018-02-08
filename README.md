@@ -10,8 +10,8 @@ You check out my other repos for more Splunk configurations.
 1. [Useful Documentation](#1---useful-documentation)
 2. [Initial Setup Commands](#2---initial-setup-commands)
 3. [Scripts](#3---scripts)
-	1. [Splunk Universal Forwarder Guided Install](#1-splunk-universal-forwarder-guided-install)
-	2. [Splunk Enterprise Initial Setup](#2-splunk-enterprise-initial-setup)
+	1. [Splunk Enterprise Initial Setup](#1-splunk-enterprise-initial-setup)
+	2. [Splunk Universal Forwarder Guided Install](#2-splunk-universal-forwarder-guided-install)
 4. [Splunk Apps](#4---splunk-apps)
 	1. [VirusTotal Command App](#1-virustotal-command-app)
 	2. [Sysinternal Autoruns Input App](#2-sysinternal-autoruns-input-app)
@@ -77,16 +77,17 @@ sudo /opt/splunkforwarder/bin/splunk enable boot-start -user splunk
 
 ## 3 - Scripts
 
-##### 1. [Splunk Universal Forwarder Guided Install](./splunk_guided_install.ps1)
+##### 1. [Splunk Enterprise Initial Setup](./install_splunkenterprise.sh)
+** Note: This works on CentOS 7. May require a few tweeks in RHEL 7 regarding the THP
+
+This is a shell script that when run as root will configure the OS by disabling transparent huge pages (THP), and set ulimits to recommended values, download the latest (as of 2/5/2018) version of Splunk Enterprise, and install it.
+
+##### 2. [Splunk Universal Forwarder Guided Install](./splunk_guided_install.ps1)
 
 This is a guided install written in Powershell. You can use it to search Active Directory for machine names, specify an input file
 with a list of machine names, or you can run it as a local install.
 
 You will also have the ability to specify a deployment server as well as an install location. 
-
-##### 2. [Splunk Enterprise Initial Setup](./install_splunkenterprise.sh)
-
-This is a shell script that when run as root will configure the OS by disabling transparent huge pages (THP), and set ulimits to recommended values, download the latest (as of 2/5/2018) version of Splunk Enterprise, and install it.
 
 ## 4 - Splunk Apps
 
