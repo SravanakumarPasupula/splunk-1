@@ -128,9 +128,9 @@ splunk add oneshot -index <index name> -source <log file path> -sourcetype <log 
 ## 4 - Scripts
 
 ##### 1. [Splunk Enterprise Initial Setup](./install_splunkenterprise.sh)
-** Note: This works on CentOS 7. May require a few tweeks in RHEL 7 regarding the THP
+** Note: This script requires systemd.
 
-This is a shell script that when run as root will configure the OS by disabling transparent huge pages (THP), and set ulimits to recommended values, download the latest (as of 2/5/2018) version of Splunk Enterprise, and install it.
+This is a shell script that when run as root will configure the OS by disabling transparent huge pages (THP), set ulimits to recommended values, and create the "splunk" user, download the latest (as of 2/5/2018) version of Splunk Enterprise, and install it.
 
 ##### 2. [Splunk Universal Forwarder Guided Install](./splunk_guided_install.ps1)
 
