@@ -1,1 +1,1 @@
-# See wiki [HERE](https://github.com/badgerttl/splunk/wiki)
+# For notes go to wiki [HERE](https://github.com/badgerttl/splunk/wiki)
